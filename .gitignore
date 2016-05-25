@@ -16,5 +16,5 @@
 !/log/.keep
 /tmp
 
-# Ignore gems in vendor
-/vendor/
+# Ignore gems in vendor/bundle
+/vendor/bundle/
