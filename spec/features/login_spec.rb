@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'ユーザがイベントの参加や登録を行うために、ログインをする' do
   context 'トップページに遷移し、"Twitterでログイン"をクリックしたとき' do
