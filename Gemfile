@@ -44,7 +44,6 @@ group :development, :test do
   gem 'rspec-rails'
 
   # Use capybara to test capybara
-  gem 'shoulda-matchers'
   gem 'capybara'
 end
 
