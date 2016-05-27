@@ -40,8 +40,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Use RSpec
+  # Use RSpec to test
   gem 'rspec-rails'
+
+  # Use capybara to test capybara
+  gem 'capybara'
 end
 
 group :development do
