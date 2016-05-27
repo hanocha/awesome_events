@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525032554) do
+ActiveRecord::Schema.define(version: 20160527022241) do
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "name",       null: false
+    t.string   "place",      null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_tiime",  null: false
+    t.text     "content",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["owner_id"], name: "index_events_on_owner_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",   null: false
