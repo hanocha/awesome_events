@@ -38,6 +38,17 @@ RSpec.describe Event, type: :model do
           expect(event.errors[:start_time]).to be_present
         end
       end
+
+      context 'end_timeと同じとき' do
+        it 'valid でないこと' do
+          event = Event.new(
+            start_time: Date.today,
+            end_time: Date.today
+          )
+          event.valid?
+          expect(event.errors[:start_time]).to be_present
+        end
+      end
     end
   end
 
