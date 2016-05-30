@@ -17,9 +17,6 @@ RSpec.describe Event, type: :model do
     context 'end_timeより後のとき' do
       it 'valid でないこと' do
         event = Event.new(
-          name: 'test_name',
-          place: 'test_place',
-          content: 'test_content',
           start_time: Date.today + 1.days,
           end_time: Date.today
         )
