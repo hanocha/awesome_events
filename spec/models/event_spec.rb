@@ -13,13 +13,14 @@ RSpec.describe Event, type: :model do
 
   describe '#start_time' do
     it { should validate_presence_of(:start_time) }
+    let(:end_time) { Date.today }
 
     describe '正常系' do
       context 'end_timeより前のとき' do
         it 'valid であること' do
           event = Event.new(
-            start_time: Date.today - 1.days,
-            end_time: Date.today
+            start_time: end_time - 1.days,
+            end_time: end_time
           )
           event.valid?
           expect(event.errors[:start_time]).not_to be_present
@@ -31,8 +32,8 @@ RSpec.describe Event, type: :model do
       context 'end_timeより後のとき' do
         it 'valid でないこと' do
           event = Event.new(
-            start_time: Date.today + 1.days,
-            end_time: Date.today
+            start_time: end_time + 1.days,
+            end_time: end_time
           )
           event.valid?
           expect(event.errors[:start_time]).to be_present
@@ -42,8 +43,8 @@ RSpec.describe Event, type: :model do
       context 'end_timeと同じとき' do
         it 'valid でないこと' do
           event = Event.new(
-            start_time: Date.today,
-            end_time: Date.today
+            start_time: end_time,
+            end_time: end_time
           )
           event.valid?
           expect(event.errors[:start_time]).to be_present
