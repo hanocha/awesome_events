@@ -43,8 +43,11 @@ group :development, :test do
   # Use RSpec to test
   gem 'rspec-rails'
 
-  # Use capybara to test capybara
+  # Use capybara for end-to-end test
   gem 'capybara'
+
+  # Use FactoryGirl for rails
+  gem 'factory_girl_rails'
 end
 
 group :development do
