@@ -15,7 +15,7 @@ RSpec.describe Event, type: :model do
     it { should validate_presence_of(:start_time) }
 
     describe '正常系' do
-      context 'end_timeより前の時' do
+      context 'end_timeより前のとき' do
         it 'valid であること' do
           event = Event.new(
             start_time: Date.today - 1.days,
