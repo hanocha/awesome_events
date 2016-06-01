@@ -13,6 +13,15 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'POST #create' do
     describe '正常系' do
+      before do
+        user = User.create(
+          provider: 'twitter',
+          uid: 'uid',
+          nickname: 'nickname',
+          image_url: 'http://example.jp/image.jpg'
+        )
+        session[:user_id] = user.id
+      end
       let(:end_time) { Date.today }
 
       context '有効なイベントを作成しようとしたとき' do
