@@ -15,6 +15,14 @@ RSpec.describe EventsController, type: :controller do
     describe '正常系' do
       context '有効なイベントを作成しようとしたとき' do
         it '#show にリダイレクトすること' do
+          post :create, event: {
+            name: 'testname',
+            place: 'testplace',
+            content: 'testcontent',
+            start_time: end_time - 1.days,
+            end_time: end_time
+          }
+          expect(response).to redirect_to event_path(assigns[:event])
         end
 
         it 'notice を渡していること' do
