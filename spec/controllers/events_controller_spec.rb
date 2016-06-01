@@ -10,4 +10,23 @@ RSpec.describe EventsController, type: :controller do
       end
     end
   end
+
+  describe 'POST #create' do
+    describe '正常系' do
+      context '有効なイベントを作成しようとしたとき' do
+        it '#show にリダイレクトすること' do
+        end
+
+        it 'notice を渡していること' do
+        end
+      end
+    end
+
+    describe '異常系' do
+      context '無効なイベントを作成しようとしたとき' do
+        it '#new に遷移すること' do
+        end
+      end
+    end
+  end
 end
