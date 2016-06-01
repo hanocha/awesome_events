@@ -36,8 +36,9 @@ RSpec.describe EventsController, type: :controller do
           expect(response).to redirect_to event_path(assigns[:event])
         end
 
-        it 'notice を渡していること' do
-        end
+        pending 'notice を渡していること'
+
+        pending '@eventにイベントが追加されること'
       end
     end
 
@@ -51,7 +52,7 @@ RSpec.describe EventsController, type: :controller do
       end
 
       context '無効なイベントを作成しようとしたとき' do
-        it '#new に遷移すること' do
+        pending '#new に遷移すること' do
         end
       end
     end
