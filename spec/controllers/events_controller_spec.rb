@@ -13,6 +13,8 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'POST #create' do
     describe '正常系' do
+      let(:end_time) { Date.today }
+
       context '有効なイベントを作成しようとしたとき' do
         it '#show にリダイレクトすること' do
           post :create, event: {
