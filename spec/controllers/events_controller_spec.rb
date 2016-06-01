@@ -52,8 +52,7 @@ RSpec.describe EventsController, type: :controller do
       end
 
       context '無効なイベントを作成しようとしたとき' do
-        pending '#new に遷移すること' do
-        end
+        pending '#new に遷移すること'
       end
     end
   end
