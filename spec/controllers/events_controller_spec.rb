@@ -42,6 +42,14 @@ RSpec.describe EventsController, type: :controller do
     end
 
     describe '異常系' do
+      context '未ログインユーザがアクセスしたとき' do
+        before { post :create }
+
+        it 'トップページにリダイレクトすること' do
+          expect(response).to redirect_to(root_path)
+        end
+      end
+
       context '無効なイベントを作成しようとしたとき' do
         it '#new に遷移すること' do
         end
