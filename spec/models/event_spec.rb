@@ -16,7 +16,7 @@ RSpec.describe Event, type: :model do
     let(:end_time) { Date.today }
 
     describe '正常系' do
-      let(:event) { create(:event) }
+      let(:event) { build(:event) }
 
       context 'end_timeより前のとき' do
         it 'valid であること' do
@@ -27,12 +27,11 @@ RSpec.describe Event, type: :model do
     end
 
     describe '異常系' do
+      let(:event) { build(:event, end_time: end_time) }
+
       context 'end_timeより後のとき' do
         it 'valid でないこと' do
-          event = Event.new(
-            start_time: end_time + 1.days,
-            end_time: end_time
-          )
+          event.start_time = end_time + 1.days
           event.valid?
           expect(event.errors[:start_time]).to be_present
         end
@@ -40,10 +39,7 @@ RSpec.describe Event, type: :model do
 
       context 'end_timeと同じとき' do
         it 'valid でないこと' do
-          event = Event.new(
-            start_time: end_time,
-            end_time: end_time
-          )
+          event.start_time = end_time
           event.valid?
           expect(event.errors[:start_time]).to be_present
         end
