@@ -37,9 +37,14 @@ RSpec.describe EventsController, type: :controller do
           expect(response).to redirect_to event_path(assigns[:event])
         end
 
-        pending 'notice を渡していること'
+        it 'notice を渡していること' do
+          expect(session['flash']['flashes']['notice']).to eq '作成しました'
+        end
 
-        pending '@eventにイベントが追加されること'
+        it '@eventにイベントが追加されること' do
+          created_event = Event.find(assigns[:event])
+          expect(created_event).to be_present
+        end
       end
     end
 
@@ -53,7 +58,21 @@ RSpec.describe EventsController, type: :controller do
       end
 
       context '無効なイベントを作成しようとしたとき' do
-        pending '#new に遷移すること'
+        before do
+          user = User.create(
+            provider: 'twitter',
+            uid: 'uid',
+            nickname: 'nickname',
+            image_url: 'http://example.jp/image.jpg'
+          )
+          session[:user_id] = user.id
+
+          post :create, event: {}
+        end
+
+        it '#new に遷移すること' do
+          expect(response).to redirect_to new_event_path
+        end
       end
     end
   end
