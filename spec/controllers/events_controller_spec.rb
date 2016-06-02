@@ -66,7 +66,9 @@ RSpec.describe EventsController, type: :controller do
             image_url: 'http://example.jp/image.jpg'
           )
           session[:user_id] = user.id
+        end
 
+        it '#new を再描画すること' do
           post :create, event: {
             name: '',
             place: '',
@@ -74,10 +76,30 @@ RSpec.describe EventsController, type: :controller do
             start_time: nil,
             end_time: nil
           }
+          expect(response).to render_template :new
         end
 
-        it '#new に遷移すること' do
-          expect(response).to redirect_to new_event_path
+        it 'ステータスコードとして400が返ってくること' do
+          post :create, event: {
+            name: '',
+            place: '',
+            content: '',
+            start_time: nil,
+            end_time: nil
+          }
+          expect(response.status).to eq 400
+        end
+
+        it 'イベントがデータベースに追加されていないこと' do
+          expect{
+            post :create, event: {
+            name: '',
+            place: '',
+            content: '',
+            start_time: nil,
+            end_time: nil
+            }
+          }.not_to change(Event, :count)
         end
       end
     end
