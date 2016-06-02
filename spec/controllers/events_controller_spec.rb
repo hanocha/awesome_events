@@ -14,23 +14,10 @@ RSpec.describe EventsController, type: :controller do
   describe 'POST #create' do
     describe '正常系' do
       before do
-        user = User.create(
-          provider: 'twitter',
-          uid: 'uid',
-          nickname: 'nickname',
-          image_url: 'http://example.jp/image.jpg'
-        )
+        user = create(:user)
         session[:user_id] = user.id
-
-        post :create, event: {
-            name: 'testname',
-            place: 'testplace',
-            content: 'testcontent',
-            start_time: end_time - 1.days,
-            end_time: end_time
-          }
+        post :create, event: attributes_for(:event)
       end
-      let(:end_time) { Date.today }
 
       context '有効なイベントを作成しようとしたとき' do
         it '#show にリダイレクトすること' do
@@ -58,21 +45,17 @@ RSpec.describe EventsController, type: :controller do
       end
 
       context '不正なパラメータのイベントを作成しようとしたとき' do
-        let(:invalid_event) { {
-          name: '',
-          place: '',
-          content: '',
-          start_time: nil,
-          end_time: nil
-        } }
-
-        before do
-          user = User.create(
-            provider: 'twitter',
-            uid: 'uid',
-            nickname: 'nickname',
-            image_url: 'http://example.jp/image.jpg'
+        let(:invalid_event) {
+          attributes_for(:event,
+            name: '',
+            place: '',
+            content: '',
+            start_time: nil,
+            end_time: nil
           )
+        }
+        before do
+          user = create(:user)
           session[:user_id] = user.id
         end
 
