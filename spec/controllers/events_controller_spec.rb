@@ -57,7 +57,15 @@ RSpec.describe EventsController, type: :controller do
         end
       end
 
-      context '無効なイベントを作成しようとしたとき' do
+      context '不正なパラメータのイベントを作成しようとしたとき' do
+        let(:invalid_event) { {
+          name: '',
+          place: '',
+          content: '',
+          start_time: nil,
+          end_time: nil
+        } }
+
         before do
           user = User.create(
             provider: 'twitter',
@@ -69,37 +77,17 @@ RSpec.describe EventsController, type: :controller do
         end
 
         it '#new を再描画すること' do
-          post :create, event: {
-            name: '',
-            place: '',
-            content: '',
-            start_time: nil,
-            end_time: nil
-          }
+          post :create, event: invalid_event
           expect(response).to render_template :new
         end
 
         it 'ステータスコードとして400が返ってくること' do
-          post :create, event: {
-            name: '',
-            place: '',
-            content: '',
-            start_time: nil,
-            end_time: nil
-          }
+          post :create, event: invalid_event
           expect(response.status).to eq 400
         end
 
         it 'イベントがデータベースに追加されていないこと' do
-          expect{
-            post :create, event: {
-            name: '',
-            place: '',
-            content: '',
-            start_time: nil,
-            end_time: nil
-            }
-          }.not_to change(Event, :count)
+          expect{ post :create, event: invalid_event }.not_to change(Event, :count)
         end
       end
     end
