@@ -43,6 +43,9 @@ group :development, :test do
   # Use RSpec to test
   gem 'rspec-rails'
 
+  # Use FactoryGirl to create models
+  gem 'factory_girl_rails'
+
   # Use capybara to test capybara
   gem 'shoulda-matchers'
   gem 'capybara'
