@@ -41,7 +41,7 @@ RSpec.describe EventsController, type: :controller do
           expect(session['flash']['flashes']['notice']).to eq '作成しました'
         end
 
-        it '@eventにイベントが追加されること' do
+        it 'データベースにイベントが追加されること' do
           created_event = Event.find(assigns[:event])
           expect(created_event).to be_present
         end
@@ -67,7 +67,13 @@ RSpec.describe EventsController, type: :controller do
           )
           session[:user_id] = user.id
 
-          post :create, event: {}
+          post :create, event: {
+            name: '',
+            place: '',
+            content: '',
+            start_time: nil,
+            end_time: nil
+          }
         end
 
         it '#new に遷移すること' do
