@@ -43,9 +43,18 @@ group :development, :test do
   # Use RSpec to test
   gem 'rspec-rails'
 
+  # Use FactoryGirl to create models
+  gem 'factory_girl_rails'
+
   # Use capybara to test capybara
   gem 'shoulda-matchers'
   gem 'capybara'
+
+  # use pry
+  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
+  gem 'pry-doc'    # methodを表示
+  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
+  gem 'pry-stack_explorer' # スタックをたどれる
 end
 
 group :development do
