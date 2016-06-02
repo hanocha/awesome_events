@@ -40,7 +40,7 @@ RSpec.describe EventsController, type: :controller do
         before { post :create }
 
         it 'トップページにリダイレクトすること' do
-          expect(response).to redirect_to(root_path)
+          expect(response).to redirect_to root_path
         end
       end
 
