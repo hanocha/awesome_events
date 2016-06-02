@@ -37,7 +37,7 @@ RSpec.describe EventsController, type: :controller do
           expect(response).to redirect_to event_path(assigns[:event])
         end
 
-        it 'notice を渡していること' do
+        it '#show で"作成しました"というメッセージを表示すること' do
           expect(session['flash']['flashes']['notice']).to eq '作成しました'
         end
 
