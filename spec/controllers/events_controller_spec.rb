@@ -29,7 +29,7 @@ RSpec.describe EventsController, type: :controller do
         end
 
         it 'データベースにイベントが追加されること' do
-          created_event = Event.find(assigns[:event])
+          created_event = Event.find(assigns[:event][:id])
           expect(created_event).to be_present
         end
       end
