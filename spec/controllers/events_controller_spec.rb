@@ -21,18 +21,19 @@ RSpec.describe EventsController, type: :controller do
           image_url: 'http://example.jp/image.jpg'
         )
         session[:user_id] = user.id
-      end
-      let(:end_time) { Date.today }
 
-      context '有効なイベントを作成しようとしたとき' do
-        it '#show にリダイレクトすること' do
-          post :create, event: {
+        post :create, event: {
             name: 'testname',
             place: 'testplace',
             content: 'testcontent',
             start_time: end_time - 1.days,
             end_time: end_time
           }
+      end
+      let(:end_time) { Date.today }
+
+      context '有効なイベントを作成しようとしたとき' do
+        it '#show にリダイレクトすること' do
           expect(response).to redirect_to event_path(assigns[:event])
         end
 
