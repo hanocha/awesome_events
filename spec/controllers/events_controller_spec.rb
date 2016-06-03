@@ -14,23 +14,10 @@ RSpec.describe EventsController, type: :controller do
   describe 'POST #create' do
     describe '正常系' do
       before do
-        user = User.create(
-          provider: 'twitter',
-          uid: 'uid',
-          nickname: 'nickname',
-          image_url: 'http://example.jp/image.jpg'
-        )
+        user = create(:user)
         session[:user_id] = user.id
-
-        post :create, event: {
-            name: 'testname',
-            place: 'testplace',
-            content: 'testcontent',
-            start_time: end_time - 1.days,
-            end_time: end_time
-          }
+        post :create, event: attributes_for(:event)
       end
-      let(:end_time) { Date.today }
 
       context '有効なイベントを作成しようとしたとき' do
         it '#show にリダイレクトすること' do
@@ -42,7 +29,7 @@ RSpec.describe EventsController, type: :controller do
         end
 
         it 'データベースにイベントが追加されること' do
-          created_event = Event.find(assigns[:event])
+          created_event = Event.find(assigns[:event][:id])
           expect(created_event).to be_present
         end
       end
@@ -53,26 +40,14 @@ RSpec.describe EventsController, type: :controller do
         before { post :create }
 
         it 'トップページにリダイレクトすること' do
-          expect(response).to redirect_to(root_path)
+          expect(response).to redirect_to root_path
         end
       end
 
       context '不正なパラメータのイベントを作成しようとしたとき' do
-        let(:invalid_event) { {
-          name: '',
-          place: '',
-          content: '',
-          start_time: nil,
-          end_time: nil
-        } }
-
+        let(:invalid_event) { attributes_for(:event, :blank) }
         before do
-          user = User.create(
-            provider: 'twitter',
-            uid: 'uid',
-            nickname: 'nickname',
-            image_url: 'http://example.jp/image.jpg'
-          )
+          user = create(:user)
           session[:user_id] = user.id
         end
 
