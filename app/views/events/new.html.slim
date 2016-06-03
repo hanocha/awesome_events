@@ -1,1 +1,9 @@
-
+h1
+  | イベントの新規作成
+.container
+  = form_for @event do |f|
+    = f.text_field :name
+    = f.text_field :place
+    = f.text_area :content
+    = f.datetime_select :start_time
+    = f.datetime_select :end_time
