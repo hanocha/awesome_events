@@ -45,15 +45,7 @@ RSpec.describe EventsController, type: :controller do
       end
 
       context '不正なパラメータのイベントを作成しようとしたとき' do
-        let(:invalid_event) {
-          attributes_for(:event,
-            name: '',
-            place: '',
-            content: '',
-            start_time: nil,
-            end_time: nil
-          )
-        }
+        let(:invalid_event) { attributes_for(:event, :blank) }
         before do
           user = create(:user)
           session[:user_id] = user.id
