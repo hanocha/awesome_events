@@ -3,17 +3,19 @@ require 'rails_helper'
 RSpec.feature "CreateEvents", type: :feature do
   describe 'ユーザがイベントを新規登録する' do
     before do
+      visit root_path
+      click_link 'Twitterでログイン'
       visit new_event_path
     end
 
     context 'イベントの登録に成功したとき' do
-      before do # まだ実装途中、ビュー作らないと定義できない
-        fill_in 'name', with: 'testname'
-        fill_in 'place', with: 'testeplace'
-        fill_in 'content', with: 'testcontent'
-        select '', from: 'start_time' # この辺の実装がどうなるのか
-        select '', from: 'end_time'
-        click_link '作成'
+      before do
+        fill_in 'event_name', with: 'testname'
+        fill_in 'event_place', with: 'testeplace'
+        fill_in 'event_content', with: 'testcontent'
+        select '2016', from: 'event_start_time_1i'
+        select '2017', from: 'event_end_time_1i'
+        click_button '作成'
       end
 
       it 'イベント詳細ページに遷移すること' do
@@ -23,7 +25,7 @@ RSpec.feature "CreateEvents", type: :feature do
 
     context 'イベントの登録に失敗したとき' do
       before do # こっちは何もfill_inしないでよさそう
-        click_link '作成'
+        click_button '作成'
       end
 
       it 'エラーメッセージが表示されること' do

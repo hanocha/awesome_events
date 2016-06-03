@@ -1,16 +1,22 @@
-h1
-  | イベントの新規作成
+.page-header
+  h1
+    | イベントの新規作成
 .container
   = form_for @event do |f|
     .form-group
+      = f.label 'イベント名'
       = f.text_field :name, class: 'form-control'
     .form-group
+      = f.label '開催場所'
       = f.text_field :place, class: 'form-control'
     .form-group
+      = f.label '概要'
       = f.text_area :content, class: 'form-control'
     .form-group
+      = f.label '開始日時'
       = f.datetime_select :start_time, class: 'form-control'
     .form-group
+      = f.label '終了日時'
       = f.datetime_select :end_time, class: 'form-control'
     .form-group
-      = f.submit
+      = f.submit '作成', class: 'btn btn-default'
