@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "CreateEvents", type: :feature do
   describe 'ユーザがイベントを新規登録する' do
     before do
-      visit create_event_path
+      visit new_event_path
     end
 
     context 'イベントの登録に成功したとき' do
@@ -16,7 +16,9 @@ RSpec.feature "CreateEvents", type: :feature do
         click_link '作成'
       end
 
-      pending 'イベント詳細ページに遷移すること'
+      it 'イベント詳細ページに遷移すること' do
+        expect(page.current_path).to eq event_path(assigns[:event])
+      end
     end
 
     context 'イベントの登録に失敗したとき' do
@@ -24,7 +26,9 @@ RSpec.feature "CreateEvents", type: :feature do
         click_link '作成'
       end
 
-      pending 'エラーメッセージが表示されること'
+      it 'エラーメッセージが表示されること' do
+        expect(page).to have_content '名前を入力してください' # 違う書き方がありそう
+      end
     end
   end
 end
