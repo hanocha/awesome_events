@@ -19,17 +19,19 @@ RSpec.feature "CreateEvents", type: :feature do
       end
 
       it 'イベント詳細ページに遷移すること' do
-        expect(page.current_path).to eq event_path(assigns[:event])
+        expect(page).to have_content 'testname'
+        expect(page).to have_content 'testplace'
+        expect(page).to have_content 'testcontent'
       end
     end
 
     context 'イベントの登録に失敗したとき' do
-      before do # こっちは何もfill_inしないでよさそう
+      before do
         click_button '作成'
       end
 
       it 'エラーメッセージが表示されること' do
-        expect(page).to have_content '名前を入力してください' # 違う書き方がありそう
+        expect(page).to have_content '名前を入力してください'
       end
     end
   end
