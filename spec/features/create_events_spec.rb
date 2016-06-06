@@ -11,7 +11,7 @@ RSpec.feature "CreateEvents", type: :feature do
     context 'イベントの登録に成功したとき' do
       before do
         fill_in 'event_name', with: 'testname'
-        fill_in 'event_place', with: 'testeplace'
+        fill_in 'event_place', with: 'testplace'
         fill_in 'event_content', with: 'testcontent'
         select '2016', from: 'event_start_time_1i'
         select '2017', from: 'event_end_time_1i'
