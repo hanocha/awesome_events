@@ -3,6 +3,12 @@
     | イベントの新規作成
 .container
   = form_for @event do |f|
+    - if @event.errors.any?
+      .alert.alert-danger
+        ul
+          - @event.errors.full_messages.each do |msg|
+            li
+              = msg
     .form-group
       = f.label 'イベント名'
       = f.text_field :name, class: 'form-control'
