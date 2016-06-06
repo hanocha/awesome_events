@@ -31,7 +31,10 @@ RSpec.feature "CreateEvents", type: :feature do
       end
 
       it 'エラーメッセージが表示されること' do
-        expect(page).to have_content '名前を入力してください'
+        expect(page).to have_content "Name can't be blank"
+        expect(page).to have_content "Place can't be blank"
+        expect(page).to have_content "Content can't be blank"
+        expect(page).to have_content "Start time は終了時間よりも前に設定してください"
       end
     end
   end
