@@ -15,7 +15,15 @@ RSpec.feature "CreateEvents", type: :feature do
           fill_in 'event_place', with: 'testplace'
           fill_in 'event_content', with: 'testcontent'
           select '2016', from: 'event_start_time_1i'
+          select '6', from: 'event_start_time_2i'
+          select '6', from: 'event_start_time_3i'
+          select '00', from: 'event_start_time_4i'
+          select '00', from: 'event_start_time_5i'
           select '2017', from: 'event_end_time_1i'
+          select '6', from: 'event_end_time_2i'
+          select '6', from: 'event_end_time_3i'
+          select '00', from: 'event_end_time_4i'
+          select '00', from: 'event_end_time_5i'
           click_button '作成'
         end
 
@@ -23,6 +31,8 @@ RSpec.feature "CreateEvents", type: :feature do
           expect(page).to have_content 'testname'
           expect(page).to have_content 'testplace'
           expect(page).to have_content 'testcontent'
+          expect(page).to have_content '2016-06-06 00:00:00 +0900'
+          expect(page).to have_content '2017-06-06 00:00:00 +0900'
         end
       end
     end
