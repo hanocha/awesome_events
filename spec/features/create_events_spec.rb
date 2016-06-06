@@ -18,7 +18,7 @@ RSpec.feature "CreateEvents", type: :feature do
         click_button '作成'
       end
 
-      it 'イベント詳細ページに遷移すること' do
+      it '登録したイベントの詳細ページに遷移すること' do
         expect(page).to have_content 'testname'
         expect(page).to have_content 'testplace'
         expect(page).to have_content 'testcontent'
