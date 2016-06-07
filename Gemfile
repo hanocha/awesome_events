@@ -66,8 +66,11 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Capistrano
+  gem 'capistrano'
 end
 
-group 'production' do
+group :staging, :production do
   gem 'unicorn'
 end
