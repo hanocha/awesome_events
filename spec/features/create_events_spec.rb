@@ -21,12 +21,12 @@ RSpec.feature "CreateEvents", type: :feature do
           fill_in 'event_place', with: 'testplace'
           fill_in 'event_content', with: 'testcontent'
           select '2016', from: 'event_start_time_1i'
-          select 'June', from: 'event_start_time_2i'
+          select '6月', from: 'event_start_time_2i'
           select '6', from: 'event_start_time_3i'
           select '00', from: 'event_start_time_4i'
           select '00', from: 'event_start_time_5i'
           select '2017', from: 'event_end_time_1i'
-          select 'June', from: 'event_end_time_2i'
+          select '6月', from: 'event_end_time_2i'
           select '6', from: 'event_end_time_3i'
           select '00', from: 'event_end_time_4i'
           select '00', from: 'event_end_time_5i'
@@ -50,10 +50,10 @@ RSpec.feature "CreateEvents", type: :feature do
         end
 
         it 'エラーメッセージが表示されること' do
-          expect(page).to have_content "Name can't be blank"
-          expect(page).to have_content "Place can't be blank"
-          expect(page).to have_content "Content can't be blank"
-          expect(page).to have_content "Start time は終了時間よりも前に設定してください"
+          expect(page).to have_content "名前を入力してください"
+          expect(page).to have_content "場所を入力してください"
+          expect(page).to have_content "内容を入力してください"
+          expect(page).to have_content "開始時間は終了時間よりも前に設定してください"
         end
       end
     end
