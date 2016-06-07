@@ -9,6 +9,12 @@ RSpec.feature "CreateEvents", type: :feature do
     end
 
     describe '正常系' do
+      context 'new_event_pathへアクセスしたとき' do
+        it 'イベント新規登録画面が表示されること' do
+          expect(page).to have_content 'イベントの新規作成'
+        end
+      end
+
       context 'イベントの登録に成功したとき' do
         before do
           fill_in 'event_name', with: 'testname'
