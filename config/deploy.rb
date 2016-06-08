@@ -3,6 +3,7 @@ lock '3.5.0'
 
 set :application, 'awesome_events'
 set :repo_url, 'git@github.com:hanocha/awesome_events.git'
+set :branch, 'add-deploy-settings'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -35,6 +36,12 @@ set :default_env, {
   rbenv_root: "/home/ops/.rbenv",
   path: "/home/ops/.rbenv/shims:/home/ops/.rbenv/bin:$PATH"
 }
+
+set :rbenv_type, :user
+set :rbenv_ruby, '2.3.1'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
