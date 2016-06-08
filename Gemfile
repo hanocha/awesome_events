@@ -73,4 +73,7 @@ end
 
 group :staging, :production do
   gem 'unicorn'
+
+  # Use dotenv in staging env. and production env.
+  gem 'dotenv-rails'
 end
