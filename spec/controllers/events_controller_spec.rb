@@ -11,6 +11,45 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    describe '正常系' do
+      context '存在するイベントを表示しようとしたとき' do
+        let(:created_event) { create(:event) }
+        before { get :show, id: created_event.id }
+
+        it 'ステータスコード200が返ること' do
+          expect(response.status).to eq 200
+        end
+
+        it '指定したidのイベントが取得できること' do
+          expect(assigns[:event][:id]).to eq created_event.id
+        end
+
+        it 'showテンプレートがレンダリングされること' do
+          expect(response).to render_template(:show)
+        end
+      end
+    end
+
+    describe '異常系' do
+      context '存在しないイベントidを指定したとき' do
+        before { get :show, id: 0 }
+
+        it 'ステータスコード400が返ってくること' do
+          expect(response.status).to eq 400
+        end
+
+        it 'イベント一覧ページに遷移すること' do
+          expect(response).to render_template(:index)
+        end
+
+        it '「存在しないイベントです」というアラートを出すこと' do
+          expect(session['flash']['flashes']['alert']).to eq '存在しないイベントです'
+        end
+      end
+    end
+  end
+
   describe 'POST #create' do
     describe '正常系' do
       before do

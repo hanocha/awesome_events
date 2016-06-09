@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate, only: [:new, :create]
 
   def new
     @event = current_user.created_events.build
@@ -15,7 +15,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    begin
+      @event = Event.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash.now[:alert] = "存在しないイベントです"
+      render action: :index, status: 400
+    end
+  end
+
+  def index
   end
 
   private
