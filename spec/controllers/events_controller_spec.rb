@@ -30,6 +30,16 @@ RSpec.describe EventsController, type: :controller do
     end
 
     describe '異常系' do
+      context '存在しないイベントidを指定した時' do
+        it 'ステータスコード400が返ってくること' do
+        end
+
+        it 'イベント一覧ページにリダイレクトすること' do
+        end
+
+        it '「存在しないイベントです」というアラートを出すこと' do
+        end
+      end
     end
   end
 
