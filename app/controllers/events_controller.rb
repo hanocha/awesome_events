@@ -15,7 +15,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    begin
+      @event = Event.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to events_path, status: 400, notice: '存在しないイベントです'
+    end
   end
 
   private
