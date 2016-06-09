@@ -27,7 +27,8 @@ RSpec.describe EventsController, type: :controller do
           expect(event.id).to eq created_event.id
         end
 
-        it 'URIがevent/show/:idであること' do
+        it 'showテンプレートがレンダリングされること' do
+          expect(response).to render_template(:show)
         end
       end
     end
