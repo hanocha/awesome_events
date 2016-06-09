@@ -26,3 +26,5 @@
     .panel-body
       = @event.start_time.to_s
       = @event.end_time.to_s
+
+  = link_to '戻る', events_path, class: "btn btn-primary"
