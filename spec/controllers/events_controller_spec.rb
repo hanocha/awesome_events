@@ -14,8 +14,8 @@ RSpec.describe EventsController, type: :controller do
   describe 'GET #show' do
     describe '正常系' do
       context '存在するイベントを表示しようとしたとき' do
-        before { get :show, id: created_event.id }
         let(:created_event) { create(:event) }
+        before { get :show, id: created_event.id }
 
         it 'ステータスコード200が返ること' do
           expect(response.status).to eq 200
