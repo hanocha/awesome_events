@@ -36,7 +36,7 @@ RSpec.describe EventsController, type: :controller do
     describe '異常系' do
       context '存在しないイベントidを指定したとき' do
         before do
-          get :show, id: 9999999999
+          get :show, id: 0
         end
 
         it 'ステータスコード400が返ってくること' do
