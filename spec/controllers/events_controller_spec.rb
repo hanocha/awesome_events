@@ -11,6 +11,25 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    describe '正常系' do
+      before do
+        get :show, id: 1
+      end
+
+      context '存在するイベントを表示しようとしたとき' do
+        it 'ステータスコード200が返ること' do
+        end
+
+        it '指定したidのイベントが取得できること' do
+        end
+      end
+    end
+
+    describe '異常系' do
+    end
+  end
+
   describe 'POST #create' do
     describe '正常系' do
       before do
