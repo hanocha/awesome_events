@@ -1,13 +1,28 @@
-.container
-  .id
-    = @event.id
-  .name
+.page-header
+  h1.name
     = @event.name
-  .place
-    = @event.place
-  .content
-    = @event.content
-  .start_time
-    = @event.start_time.to_s
-  .end_time
-    = @event.end_time.to_s
+.container
+  .panel.panel-default
+    .panel-heading
+      | 主催者
+    .panel-body
+      = @event.owner_id
+
+  .panel.panel-default
+    .panel-heading
+      | 開催場所
+    .panel-body
+      = @event.place
+
+  .panel.panel-default
+    .panel-heading
+      | イベント内容
+    .panel-body
+      = @event.content
+
+  .panel.panel-default
+    .panel-heading
+      | 開催時間
+    .panel-body
+      = @event.start_time.to_s
+      = @event.end_time.to_s
