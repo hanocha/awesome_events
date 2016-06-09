@@ -14,14 +14,17 @@ RSpec.describe EventsController, type: :controller do
   describe 'GET #show' do
     describe '正常系' do
       before do
-        get :show, id: 1
+        created_event = create(:event)
+        get :show, id: created_event.id
       end
 
       context '存在するイベントを表示しようとしたとき' do
         it 'ステータスコード200が返ること' do
+          expect(response.status).to eq 200
         end
 
         it '指定したidのイベントが取得できること' do
+          expect(event.id).to eq created_event.id
         end
 
         it 'URIがevent/show/:idであること' do
@@ -32,12 +35,15 @@ RSpec.describe EventsController, type: :controller do
     describe '異常系' do
       context '存在しないイベントidを指定した時' do
         it 'ステータスコード400が返ってくること' do
+          expect(response.status).to eq 400
         end
 
         it 'イベント一覧ページにリダイレクトすること' do
+          expect(response).to redirect_to(events_path)
         end
 
         it '「存在しないイベントです」というアラートを出すこと' do
+          expect(session['flash']['flashes']['notice']).to eq '存在しないイベントです'
         end
       end
     end
