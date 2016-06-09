@@ -33,7 +33,8 @@ RSpec.feature "EventShows", type: :feature do
 
         context '戻るボタンをクリックしたとき' do
           it 'イベント一覧ページに遷移すること' do
-            expect(page.current_url).to eq events_path
+            click_on '戻る'
+            expect(page.current_path).to eq events_path
           end
         end
       end
