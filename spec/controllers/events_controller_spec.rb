@@ -23,6 +23,9 @@ RSpec.describe EventsController, type: :controller do
 
         it '指定したidのイベントが取得できること' do
         end
+
+        it 'URIがevent/show/:idであること' do
+        end
       end
     end
 
