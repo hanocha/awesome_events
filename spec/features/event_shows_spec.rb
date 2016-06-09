@@ -19,7 +19,7 @@ RSpec.feature "EventShows", type: :feature do
         end
 
         it '正しい開催場所が表示されていること' do
-          except(page).to have_content sample_event.place
+          expect(page).to have_content sample_event.place
         end
 
         it '正しいイベント内容が表示されていること' do
