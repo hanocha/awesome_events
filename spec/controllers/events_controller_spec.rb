@@ -13,12 +13,12 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'GET #show' do
     describe '正常系' do
-      before do
-        created_event = create(:event)
-        get :show, id: created_event.id
-      end
-
       context '存在するイベントを表示しようとしたとき' do
+        before do
+          created_event = create(:event)
+          get :show, id: created_event.id
+        end
+
         it 'ステータスコード200が返ること' do
           expect(response.status).to eq 200
         end
