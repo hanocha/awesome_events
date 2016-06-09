@@ -48,7 +48,7 @@ RSpec.describe EventsController, type: :controller do
         end
 
         it '「存在しないイベントです」というアラートを出すこと' do
-          expect(session['flash']['flashes']['notice']).to eq '存在しないイベントです'
+          expect(session['flash']['flashes']['alert']).to eq '存在しないイベントです'
         end
       end
     end
