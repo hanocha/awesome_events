@@ -34,22 +34,6 @@ RSpec.describe EventsController, type: :controller do
     end
 
     describe '異常系' do
-      context 'イベントidを指定しなかったとき' do
-        before { get :show }
-
-        it 'ステータスコード400が返ってくること' do
-          expect(response.status).to eq 400
-        end
-
-        it 'イベント一覧ページにリダイレクトすること' do
-          expect(response).to redirect_to(events_path)
-        end
-
-        it '「イベントIDを指定してください」というアラートを出すこと' do
-          expect(session['flash']['flashes']['notice']).to eq 'イベントIDを指定してください'
-        end
-      end
-
       context '存在しないイベントidを指定したとき' do
         before do
           get :show, id: 9999999999
