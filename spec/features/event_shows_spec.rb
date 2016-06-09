@@ -27,8 +27,8 @@ RSpec.feature "EventShows", type: :feature do
         end
 
         it '正しい開始/終了時刻が表示されていること' do
-          expect(page).to have_content sample_event.start_time
-          expect(page).to have_content sample_event.end_time
+          expect(page).to have_content sample_event.start_time.strftime('%Y/%m/%d %H:%M')
+          expect(page).to have_content sample_event.end_time.strftime('%Y/%m/%d %H:%M')
         end
 
         context '戻るボタンをクリックしたとき' do
