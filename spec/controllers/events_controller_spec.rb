@@ -43,8 +43,8 @@ RSpec.describe EventsController, type: :controller do
           expect(response.status).to eq 400
         end
 
-        it 'イベント一覧ページにリダイレクトすること' do
-          expect(response).to redirect_to(events_path)
+        it 'イベント一覧ページに遷移すること' do
+          expect(response).to render_template(:index)
         end
 
         it '「存在しないイベントです」というアラートを出すこと' do
