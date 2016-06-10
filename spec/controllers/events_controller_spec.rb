@@ -30,6 +30,17 @@ RSpec.describe EventsController, type: :controller do
           # 全イベントの開始時刻と現在時刻を総当りでチェックするだけ？
         end
       end
+
+      context '未開催のイベントが1件もないとき' do
+        it 'ステータスコード200が返ること' do
+        end
+
+        it 'indexテンプレートがレンダリングされること' do
+        end
+
+        it '取得したイベントの件数が0件であること' do
+        end
+      end
     end
 
     describe '異常系' do
