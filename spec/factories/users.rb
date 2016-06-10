@@ -1,12 +1,12 @@
 FactoryGirl.define do
-  factory :user do
+  factory :user, aliases: [:owner] do
     provider 'twitter'
     sequence(:uid) { |i| "uid#{i}" }
     sequence(:nickname) { |i| "nickname#{i}" }
     sequence(:image_url) { |i| "http://example.com/image#{i}.jpg" }
   end
 
-  trait :broken_peter do
+  trait :active_user do
     provider 'twitter'
     uid '2351441480'
     nickname 'broken_peter'
