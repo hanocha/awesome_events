@@ -11,6 +11,42 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
+  describe 'GET #index' do
+    describe '正常系' do
+      context 'イベント一覧を取得したとき' do
+        it 'ステータスコード200が返ること' do
+        end
+
+        it 'indexテンプレートがレンダリングされること' do
+        end
+
+        it '未開催のイベントが全て取得できること' do
+          # 取得できたイベントの件数が意図したものと同数であればOK？
+          # 件数チェック＋開始時刻チェック？
+        end
+
+        it '開催済みのイベントが含まれないこと' do
+          # ここは件数チェック不要？
+          # 全イベントの開始時刻と現在時刻を総当りでチェックするだけ？
+        end
+      end
+
+      context '未開催のイベントが1件もないとき' do
+        it 'ステータスコード200が返ること' do
+        end
+
+        it 'indexテンプレートがレンダリングされること' do
+        end
+
+        it '取得したイベントの件数が0件であること' do
+        end
+      end
+    end
+
+    describe '異常系' do
+    end
+  end
+
   describe 'GET #show' do
     describe '正常系' do
       context '存在するイベントを表示しようとしたとき' do
