@@ -6,10 +6,10 @@
     .panel-heading
       | 主催者
     .panel-body
-      = link_to "https://twitter.com/#{User.find(@event.owner_id).nickname}" do
-        = image_tag User.find(@event.owner_id).image_url
+      = link_to "https://twitter.com/#@event.owner.nickname}" do
+        = image_tag @event.owner.image_url
         |  @
-        = User.find(@event.owner_id).nickname
+        = @event.owner.nickname
 
   .panel.panel-default
     .panel-heading
