@@ -11,6 +11,9 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
+  describe 'GET #index' do
+  end
+
   describe 'GET #show' do
     describe '正常系' do
       context '存在するイベントを表示しようとしたとき' do
