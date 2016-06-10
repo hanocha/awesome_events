@@ -35,11 +35,7 @@ RSpec.feature "CreateEvents", type: :feature do
         end
 
         it '登録したイベントの詳細ページに遷移すること' do
-          expect(page).to have_content 'testname'
-          expect(page).to have_content 'testplace'
-          expect(page).to have_content 'testcontent'
-          expect(page).to have_content '2016-06-06 00:00:00 +0900'
-          expect(page).to have_content '2017-06-06 00:00:00 +0900'
+          expect(page).to have_content sample_event.name
         end
       end
     end
