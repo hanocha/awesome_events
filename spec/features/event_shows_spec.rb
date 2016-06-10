@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.feature "EventShows", type: :feature do
   describe 'ユーザがイベント詳細を閲覧する' do
     describe '正常系' do
-      let(:sample_event) { create(:event, owner_id: 1) }
+      let(:owner) { create(:user, :active_user) }
+      let(:sample_event) { create(:event, owner: owner) }
       before do
-        create(:user, :broken_peter)
         visit event_path(sample_event.id)
       end
 
@@ -15,7 +15,7 @@ RSpec.feature "EventShows", type: :feature do
         end
 
         it '正しい主催者が表示されていること' do
-          expect(page).to have_content User.find(sample_event.owner_id).nickname
+          expect(page).to have_content sample_event.owner.nickname
         end
 
         it '正しい開催場所が表示されていること' do
