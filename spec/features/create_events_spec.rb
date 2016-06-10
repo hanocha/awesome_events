@@ -16,29 +16,26 @@ RSpec.feature "CreateEvents", type: :feature do
       end
 
       context 'イベントの登録に成功したとき' do
+        let(:sample_event) { build(:event) }
         before do
-          fill_in 'event_name', with: 'testname'
-          fill_in 'event_place', with: 'testplace'
-          fill_in 'event_content', with: 'testcontent'
-          select '2016', from: 'event_start_time_1i'
-          select '6月', from: 'event_start_time_2i'
-          select '6', from: 'event_start_time_3i'
-          select '00', from: 'event_start_time_4i'
-          select '00', from: 'event_start_time_5i'
-          select '2017', from: 'event_end_time_1i'
-          select '6月', from: 'event_end_time_2i'
-          select '6', from: 'event_end_time_3i'
-          select '00', from: 'event_end_time_4i'
-          select '00', from: 'event_end_time_5i'
+          fill_in 'event_name', with: sample_event.name
+          fill_in 'event_place', with: sample_event.place
+          fill_in 'event_content', with: sample_event.content
+          select sample_event.start_time.year, from: 'event_start_time_1i'
+          select "#{sample_event.start_time.month}月", from: 'event_start_time_2i'
+          select sample_event.start_time.day, from: 'event_start_time_3i'
+          select sample_event.start_time.strftime("%H"), from: 'event_start_time_4i'
+          select sample_event.start_time.strftime("%M"), from: 'event_start_time_5i'
+          select sample_event.end_time.year, from: 'event_end_time_1i'
+          select "#{sample_event.end_time.month}月", from: 'event_end_time_2i'
+          select sample_event.end_time.day, from: 'event_end_time_3i'
+          select sample_event.end_time.strftime("%H"), from: 'event_end_time_4i'
+          select sample_event.end_time.strftime("%M"), from: 'event_end_time_5i'
           click_button '作成'
         end
 
         it '登録したイベントの詳細ページに遷移すること' do
-          expect(page).to have_content 'testname'
-          expect(page).to have_content 'testplace'
-          expect(page).to have_content 'testcontent'
-          expect(page).to have_content '2016-06-06 00:00:00 +0900'
-          expect(page).to have_content '2017-06-06 00:00:00 +0900'
+          expect(page).to have_content sample_event.name
         end
       end
     end
